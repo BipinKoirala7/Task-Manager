@@ -10,10 +10,11 @@
    ```
 
 3. Create `backend/.env` and add your MongoDB and JWT values.
-4. Start the app from the root folder:
+   You would need two variables `` MONGODB_URL `` & `` ACCESS_TOKEN_SECRET ``
+5. Start the app from the root folder:
 
    ```sh
    npm run dev
    ```
 
-5. Open `http://localhost:3000` in your browser.
+6. Open `http://localhost:3000` in your browser.
