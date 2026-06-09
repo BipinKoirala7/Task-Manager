@@ -1,9 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4f7c6e; /* replace with your actual color */
+  --color-primary-dark: #3a6358; /* replace with your actual color */
+}
 
 body {
   font-family: "Roboto", sans-serif;
   background: linear-gradient(180deg, #f5f9f8 0%, #eef5f4 100%);
   color: #334155;
+}
+
+@theme {
+  --animate-loader: loader 1s linear infinite;
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
 }
