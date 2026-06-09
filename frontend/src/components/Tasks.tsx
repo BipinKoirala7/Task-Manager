@@ -40,7 +40,7 @@ const Tasks = () => {
     <>
       <div className="my-2 mx-auto max-w-[700px] py-4">
         {tasks.length !== 0 && (
-          <h2 className="my-2 ml-2 md:ml-0 text-xl">
+          <h2 className="my-2 ml-2 md:ml-0 text-xl font-semibold text-slate-800">
             Your tasks ({tasks.length})
           </h2>
         )}
@@ -49,11 +49,11 @@ const Tasks = () => {
         ) : (
           <div>
             {tasks.length === 0 ? (
-              <div className="w-[600px] h-[300px] flex items-center justify-center gap-4">
-                <span>No tasks found</span>
+              <div className="w-[600px] h-[300px] flex items-center justify-center gap-4 rounded-2xl border border-slate-200 bg-white/80 shadow-sm">
+                <span className="text-slate-600">No tasks found</span>
                 <Link
                   to="/tasks/add"
-                  className="bg-blue-500 text-white hover:bg-blue-600 font-medium rounded-md px-4 py-2"
+                  className="bg-primary text-white hover:bg-primary-dark font-medium rounded-xl px-4 py-2 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
                 >
                   + Add new task{" "}
                 </Link>
@@ -62,15 +62,17 @@ const Tasks = () => {
               tasks.map((task, index) => (
                 <div
                   key={task._id}
-                  className="bg-white my-4 p-4 text-gray-600 rounded-md shadow-md"
+                  className="bg-white/90 my-4 p-4 text-slate-700 rounded-2xl shadow-sm border border-slate-200 transition-all hover:shadow-md hover:border-slate-300"
                 >
                   <div className="flex">
-                    <span className="font-medium">Task #{index + 1}</span>
+                    <span className="font-medium text-slate-800">
+                      Task #{index + 1}
+                    </span>
 
                     <Tooltip text={"Edit this task"} position={"top"}>
                       <Link
                         to={`/tasks/${task._id}`}
-                        className="ml-auto mr-2 text-green-600 cursor-pointer"
+                        className="ml-auto mr-2 text-primary cursor-pointer transition-colors hover:text-primary-dark"
                       >
                         <i className="fa-solid fa-pen"></i>
                       </Link>
@@ -78,7 +80,7 @@ const Tasks = () => {
 
                     <Tooltip text={"Delete this task"} position={"top"}>
                       <span
-                        className="text-red-500 cursor-pointer"
+                        className="text-slate-400 cursor-pointer transition-colors hover:text-rose-500"
                         onClick={() => handleDelete(task._id)}
                       >
                         <i className="fa-solid fa-trash"></i>

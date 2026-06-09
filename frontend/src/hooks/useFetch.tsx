@@ -44,7 +44,7 @@ const useFetch = (): [FetchFn, FetchState] => {
       });
 
       if (showErrorToast) toast.error(msg);
-      return Promise.reject();
+      return Promise.reject(error);
     }
   }, []);
 

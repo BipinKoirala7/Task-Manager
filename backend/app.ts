@@ -5,9 +5,9 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "path";
 import cors from "cors";
-import authRoutes from "./routes/authRoutes";
-import taskRoutes from "./routes/taskRoutes";
-import profileRoutes from "./routes/profileRoutes";
+import authRoutes from "./routes/auth.routes";
+import taskRoutes from "./routes/task.routes";
+import profileRoutes from "./routes/profile.routes";
 
 const app = express();
 

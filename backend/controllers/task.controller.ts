@@ -4,7 +4,7 @@ import { validateObjectId } from "../utils/validation";
 
 export const getTasks = async (req: Request, res: Response) => {
   try {
-    const tasks = await Task.find({ user: req.user?.id });
+    const tasks = await Task.find({ user: req.user!._id });
     res
       .status(200)
       .json({ tasks, status: true, msg: "Tasks found successfully.." });
@@ -23,7 +23,7 @@ export const getTask = async (req: Request, res: Response) => {
     }
 
     const task = await Task.findOne({
-      user: req.user!.id,
+      user: req.user!._id,
       _id: req.params.taskId,
     });
     if (!task) {
@@ -48,7 +48,7 @@ export const postTask = async (req: Request, res: Response) => {
         .status(400)
         .json({ status: false, msg: "Description of task not found" });
     }
-    const task = await Task.create({ user: req.user!.id, description });
+    const task = await Task.create({ user: req.user!._id, description });
     res
       .status(200)
       .json({ task, status: true, msg: "Task created successfully.." });
@@ -80,7 +80,7 @@ export const putTask = async (req: Request, res: Response) => {
         .json({ status: false, msg: "Task with given id not found" });
     }
 
-    if (task.user != req.user!.id) {
+    if (task.user.toString() !== req.user!._id.toString()) {
       return res
         .status(403)
         .json({ status: false, msg: "You can't update task of another user" });
@@ -115,7 +115,7 @@ export const deleteTask = async (req: Request, res: Response) => {
         .json({ status: false, msg: "Task with given id not found" });
     }
 
-    if (task.user.toString() !== req.user!.id) {
+    if (task.user.toString() !== req.user!._id.toString()) {
       return res
         .status(403)
         .json({ status: false, msg: "You can't delete task of another user" });

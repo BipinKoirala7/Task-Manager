@@ -55,12 +55,12 @@ const LoginForm = ({ redirectUrl }) => {
 
   return (
     <>
-      <form className="m-auto my-16 max-w-[500px] bg-white p-8 border-2 shadow-md rounded-md">
+      <form className="m-auto my-16 max-w-[500px] bg-white/90 p-8 border border-slate-200 shadow-xl rounded-2xl">
         {loading ? (
           <Loader />
         ) : (
           <>
-            <h2 className="text-center mb-4">
+            <h2 className="text-center mb-4 text-slate-800 text-2xl font-semibold">
               Welcome user, please login here
             </h2>
             <div className="mb-4">
@@ -100,14 +100,17 @@ const LoginForm = ({ redirectUrl }) => {
             </div>
 
             <button
-              className="bg-primary text-white px-4 py-2 font-medium hover:bg-primary-dark"
+              className="bg-primary text-white px-4 py-2 font-medium rounded-xl shadow-sm transition-all hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-md"
               onClick={handleSubmit}
             >
               Submit
             </button>
 
             <div className="pt-4">
-              <Link to="/signup" className="text-blue-400">
+              <Link
+                to="/signup"
+                className="text-primary hover:text-primary-dark transition-colors"
+              >
                 Don't have an account? Signup here
               </Link>
             </div>

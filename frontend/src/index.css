@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body
-{
+body {
   font-family: "Roboto", sans-serif;
+  background: linear-gradient(180deg, #f5f9f8 0%, #eef5f4 100%);
+  color: #334155;
 }

@@ -52,7 +52,7 @@ const Task = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateManyFields("task", formData);
     setFormErrors({});
@@ -71,9 +71,12 @@ const Task = () => {
         data: formData,
         headers: { Authorization: authState.token },
       };
-      fetchData(config).then(() => {
+      try {
+        await fetchData(config);
         navigate("/");
-      });
+      } catch (error) {
+        return;
+      }
     } else {
       const config = {
         url: `/tasks/${taskId}`,
@@ -81,9 +84,12 @@ const Task = () => {
         data: formData,
         headers: { Authorization: authState.token },
       };
-      fetchData(config).then(() => {
+      try {
+        await fetchData(config);
         navigate("/");
-      });
+      } catch (error) {
+        return;
+      }
     }
   };
 
@@ -99,12 +105,12 @@ const Task = () => {
   return (
     <>
       <MainLayout>
-        <form className="m-auto my-16 max-w-[1000px] bg-white p-8 border-2 shadow-md rounded-md">
+        <form className="m-auto my-16 max-w-[1000px] bg-white/90 p-8 border border-slate-200 shadow-xl rounded-2xl">
           {loading ? (
             <Loader />
           ) : (
             <>
-              <h2 className="text-center mb-4">
+              <h2 className="text-center mb-4 text-slate-800 text-2xl font-semibold">
                 {mode === "add" ? "Add New Task" : "Edit Task"}
               </h2>
               <div className="mb-4">
@@ -121,20 +127,20 @@ const Task = () => {
               </div>
 
               <button
-                className="bg-primary text-white px-4 py-2 font-medium hover:bg-primary-dark"
+                className="bg-primary text-white px-4 py-2 font-medium rounded-xl shadow-sm transition-all hover:bg-primary-dark hover:-translate-y-0.5 hover:shadow-md"
                 onClick={handleSubmit}
               >
                 {mode === "add" ? "Add task" : "Update Task"}
               </button>
               <button
-                className="ml-4 bg-red-500 text-white px-4 py-2 font-medium"
+                className="ml-4 bg-slate-200 text-slate-700 px-4 py-2 font-medium rounded-xl transition-all hover:bg-slate-300"
                 onClick={() => navigate("/")}
               >
                 Cancel
               </button>
               {mode === "update" && (
                 <button
-                  className="ml-4 bg-blue-500 text-white px-4 py-2 font-medium hover:bg-blue-600"
+                  className="ml-4 bg-slate-700 text-white px-4 py-2 font-medium rounded-xl shadow-sm transition-all hover:bg-slate-800 hover:-translate-y-0.5 hover:shadow-md"
                   onClick={handleReset}
                 >
                   Reset

@@ -5,7 +5,7 @@ import {
   postTask,
   putTask,
   deleteTask,
-} from "../controllers/taskControllers";
+} from "../controllers/task.controller";
 import { verifyAccessToken } from "../middlewares";
 
 const router = Router();
