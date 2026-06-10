@@ -66,8 +66,7 @@ export const login = async (req: Request, res: Response) => {
         .json({ status: false, msg: "Password incorrect!!" });
 
     const token = createAccessToken({ id: user._id });
-    const userObj: Record<string, unknown> = user.toObject();
-    delete userObj.password;
+    const userObj = user.toObject() as unknown as Record<string, unknown>;
     res
       .status(200)
       .json({ token, user: userObj, status: true, msg: "Login successful.." });

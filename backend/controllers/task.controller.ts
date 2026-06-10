@@ -18,7 +18,7 @@ export const getTasks = async (req: Request, res: Response) => {
 
 export const getTask = async (req: Request, res: Response) => {
   try {
-    if (!validateObjectId(req.params.taskId)) {
+    if (!validateObjectId(req.params.taskId as string)) {
       return res.status(400).json({ status: false, msg: "Task id not valid" });
     }
 
@@ -69,7 +69,7 @@ export const putTask = async (req: Request, res: Response) => {
         .json({ status: false, msg: "Description of task not found" });
     }
 
-    if (!validateObjectId(req.params.taskId)) {
+    if (!validateObjectId(req.params.taskId as string)) {
       return res.status(400).json({ status: false, msg: "Task id not valid" });
     }
 
@@ -104,7 +104,7 @@ export const putTask = async (req: Request, res: Response) => {
 
 export const deleteTask = async (req: Request, res: Response) => {
   try {
-    if (!validateObjectId(req.params.taskId)) {
+    if (!validateObjectId(req.params.taskId as string)) {
       return res.status(400).json({ status: false, msg: "Task id not valid" });
     }
 
